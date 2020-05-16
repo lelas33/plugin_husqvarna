@@ -1,4 +1,20 @@
 <?php
+
+// Liste de constante à partager avec l'utilisation
+define ('PARKED_TIMER',     0);
+define ('OK_LEAVING',       1);
+define ('OK_CUTTING',       2);
+define ('PARKED_PARKED_SELECTED', 3);
+define ('OK_SEARCHING',     4);
+define ('OK_CHARGING',      5);
+define ('PAUSED',           6);
+define ('PARKED_AUTOTIMER', 7);
+define ('COMPLETED_CUTTING_TODAY_AUTO', 8);
+define ('OK_CUTTING_NOT_AUTO', 9);
+define ('OFF_HATCH_OPEN',     10);
+define ('STS_UNKNOWN',        99);
+
+
 class husqvarna_api {
 
 	protected $url_api_im = 'https://iam-api.dss.husqvarnagroup.net/api/v3/';
@@ -56,19 +72,20 @@ class husqvarna_api {
   78 => "Défaut d’entrainement"
   ];
   
+  
   // List of mower modes
   protected $state_codes = [
-   0 => "PARKED_TIMER",
-   1 => "OK_LEAVING",
-   2 => "OK_CUTTING",
-   3 => "PARKED_PARKED_SELECTED",
-   4 => "OK_SEARCHING",
-   5 => "OK_CHARGING",
-   6 => "PAUSED",
-   7 => "PARKED_AUTOTIMER",
-   8 => "COMPLETED_CUTTING_TODAY_AUTO",
-   9 => "OK_CUTTING_NOT_AUTO",
-  10 => "OFF_HATCH_OPEN"
+   PARKED_TIMER             => "PARKED_TIMER",
+   OK_LEAVING               => "OK_LEAVING",
+   OK_CUTTING               => "OK_CUTTING",
+   PARKED_PARKED_SELECTED   => "PARKED_PARKED_SELECTED",
+   OK_SEARCHING             => "OK_SEARCHING",
+   OK_CHARGING              => "OK_CHARGING",
+   PAUSED                   => "PAUSED",
+   PARKED_AUTOTIMER         => "PARKED_AUTOTIMER",
+   COMPLETED_CUTTING_TODAY_AUTO  => "COMPLETED_CUTTING_TODAY_AUTO",
+   OK_CUTTING_NOT_AUTO      => "OK_CUTTING_NOT_AUTO",
+   OFF_HATCH_OPEN           => "OFF_HATCH_OPEN"
   ];
 
 
