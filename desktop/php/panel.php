@@ -36,14 +36,13 @@ $eqLogics = eqLogic::byType('husqvarna');
                   Début : <input id="in_startDate" class="pull-right form-control input-sm in_datepicker" style="display : inline-block; width: 87px;" value="<?php echo $date['start']?>"/>
                   <br>
                   Fin : <input id="in_endDate" class="pull-right form-control input-sm in_datepicker" style="display : inline-block; width: 87px;" value="<?php echo $date['end']?>"/>
-                  <br>
-                  <a style="margin-right:5px;" class="pull-right btn btn-success btn-sm tooltips" id='bt_validChangeDate' title="{{Misé à jour des données sur la période}}">{{Mise à jour période}}</a>
                 </div>
                 <div class="pull-left" style="padding-top:30px;padding-left:20px;min-height:150px;font-size: 1.5em;">
-                  <a style="margin-right:5px;" class="pull-left btn btn-info btn-sm tooltips" id='bt_per_today'>{{Aujourd'hui}}</a>
-                  <a style="margin-right:5px;" class="pull-left btn btn-info btn-sm tooltips" id='bt_per_yesterday'>{{Hier}}</a>
-                  <a style="margin-right:5px;" class="pull-left btn btn-info btn-sm tooltips" id='bt_per_last_week'>{{Les 7 derniers jours}}</a>
-                  <a style="margin-right:5px;" class="pull-left btn btn-info btn-sm tooltips" id='bt_per_all'>{{Tout}}</a>
+                  <a style="margin-right:5px;" class="pull-left btn btn-success btn-sm tooltips" id='bt_validChangeDate' title="{{Mise à jour des données sur la période}}">{{Mise à jour période}}</a><br>
+                  <a style="margin-right:5px;" class="pull-left btn btn-success btn-sm tooltips" id='bt_per_today'>{{Aujourd'hui}}</a>
+                  <a style="margin-right:5px;" class="pull-left btn btn-success btn-sm tooltips" id='bt_per_yesterday'>{{Hier}}</a>
+                  <a style="margin-right:5px;" class="pull-left btn btn-success btn-sm tooltips" id='bt_per_last_week'>{{Les 7 derniers jours}}</a>
+                  <a style="margin-right:5px;" class="pull-left btn btn-success btn-sm tooltips" id='bt_per_all'>{{Tout}}</a>
                 </div>
               </fieldset>
             </form>
