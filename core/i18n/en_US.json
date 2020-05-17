@@ -2,7 +2,7 @@
     "plugins\/husqvarna\/plugin_info\/configuration.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",
         "Compte husqvarna": "Husqvarna account",
-        "Password husqvarna": "Password husqvarna"
+        "Password husqvarna": "Husqvarna Password"
     },
     "plugins\/husqvarna\/desktop\/php\/husqvarna.php": {
         "401 - Accès non autorisé": "401 - Unauthorized access",

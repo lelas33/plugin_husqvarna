@@ -7,7 +7,7 @@
         hist = _options.display_value;    
         list_of_points = hist.split('/');
         ratios = list_of_points[1].split(',');
-        ratio = parseInt(ratios[0])/100;
+        ratio = parseInt(ratios[1])/100;
         size = list_of_points[0].split(',');
         img_wd = Math.round(size[0]*ratio);
         img_he = Math.round(size[1]*ratio);
@@ -50,7 +50,7 @@
           point = list_of_points[2].split(',');
           cx = Math.round(point[0]*ratio);
           cy = Math.round(point[1]*ratio);
-          ctx.arc(cx, cy, 8, 0, 2 * Math.PI);
+          ctx.arc(cx, cy, 6, 0, 2 * Math.PI);
           ctx.stroke();
         }
     }

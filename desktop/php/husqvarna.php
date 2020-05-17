@@ -445,9 +445,15 @@ sendVarToJS('eqType', 'husqvarna');
                         <div class="form-group" style="min-height: 10px;">
                         </div>
                         <div class="form-group">
-                          <label class="col-sm-3 control-label">{{Facteur de taille pour le widget}}</label>
+                          <label class="col-sm-3 control-label">{{Facteur de taille pour le widget Dashboard}}</label>
                           <div class="col-lg-3">
                              <input type="text" class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="img_wdg_ratio" placeholder="80%"/>
+                          </div>
+                        </div>
+                        <div class="form-group">
+                          <label class="col-sm-3 control-label">{{Facteur de taille pour le widget Mobile}}</label>
+                          <div class="col-lg-3">
+                             <input type="text" class="eqLogicAttr configuration form-control" data-l1key="configuration" data-l2key="img_wdgm_ratio" placeholder="40%"/>
                           </div>
                         </div>
                         <div class="form-group">
