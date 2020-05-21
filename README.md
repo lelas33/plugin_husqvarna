@@ -74,6 +74,11 @@ Pour rappel, le plugin météo / prévision dans l'heure fourni une probabilité
 
 (il est possible que ces seuils aient besoin d'être ajustés: je les ajouterai en paramètres dans une prochaine version)
 
+**Remarque sur la planification:**
+La planification du plugin est complémentaire à celle intégrée dans le robot.
+Il faut donc que les plages de fonctionnements du robot incluent celle du plugin.
+(Une façon simple de faire est de configurer le robot en H24, 7j/7, et c'est dans ce cas la planification du plugin qui est 
+prise en compte)
 
 ## Panel
 Une page de type "panel" est disponible pour le plugin dans le menu Acceuil de jeedom.
@@ -96,5 +101,5 @@ Cette page permet également en sélectionnant le bouton "Config Robot" de lire 
 L'affichage est relativement "brut", et uniquement pour information.
 
 <p align="left">
-  <img src="../master/doc/images/pannel_2.png" width="600" title="Configuration Planification">
+  <img src="../master/doc/images/pannel_2.png" width="450" title="Configuration Planification">
 </p>
