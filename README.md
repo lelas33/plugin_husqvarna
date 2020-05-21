@@ -17,6 +17,12 @@ Les fonctions ajoutées au plugin actuel sont:
   <img src="../master/doc/images/widget.png" width="300" title="Widget dashboard">
 </p>
 
+## Versions
+* Tag husq_v1.0: Version originale du 16/5/2020
+* Tag husq_v1.1: Version 21/5/2020.
+Ajout de la documentation, finalisation de la planification, et simplification de l'installation
+
+
 ## Installation
 * Télécharger le plugin depuis Github. Je vous suggère de télécharger les versions avec tags ("husq_vx.y")
 * Si vous avez déjà le plugin husqvarna installé sur votre jeedom, vous pouvez supprimer l'équipement jeedom correspondant, et faire une  sauvegarde par précaution du dossier correspondant dans le répertoire plugin de jeedom.
@@ -79,6 +85,12 @@ La planification du plugin est complémentaire à celle intégrée dans le robot
 Il faut donc que les plages de fonctionnements du robot incluent celle du plugin.
 (Une façon simple de faire est de configurer le robot en H24, 7j/7, et c'est dans ce cas la planification du plugin qui est 
 prise en compte)
+
+## Widget
+Le widget est configuré automatiquement par le plugin lors de la création de l'équipement. Toutefois, il faut réaliser "à la main" les opérations complémentaires suivantes:
+* Recopier les fichiers depuis le dossier du plugin (plugins\husqvarna\ressources\data\img\IconAction) vers le dossier jeedom (data\img\IconAction). Il s'agit d'images de boutons utilisées par le widget.
+* Créer un widget personnalisé nommé IconActionNt en important le fichier "plugins\husqvarna\ressources\data\imgIconActionNt.json" dans la fonction "outils/widgets/importer" de jeedom) => Merci à SALVIALF pour ce widget.
+* Organiser les infos et commandes du plugins sur le dashboard jeedom (par exemple comme dans l'image plus haut)
 
 ## Panel
 Une page de type "panel" est disponible pour le plugin dans le menu Acceuil de jeedom.
