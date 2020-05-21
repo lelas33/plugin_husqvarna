@@ -2,7 +2,8 @@
 
 **Fonctions**
 
-Le plugin reste globalement compatible de la version de référence, car les Infos et Commandes existantes ont été conservées.
+Ce plugin est basé sur la version de référence disponible sur le market Jeedom, et ajoute des fonctions complémentaires.
+Il reste globalement compatible de cette version de référence, car les Infos et Commandes existantes ont été conservées.
 
 Les fonctions ajoutées au plugin actuel sont:
 * La position courante GPS du robot et des 50 dernières positions pour l’affichage sur une carte dans le widget.
@@ -41,7 +42,17 @@ Le fichier image obtenu doit être placé dans le dossier "ressources" du plugin
 Il y a 2 fonctions supplémentaires offerte par la planification du plugin par rapport à la planification intégrée au robot: - La gestion de 2 zones de fonctionnement du robot (voir la description de cette fonction plus bas), et le couplage au plugin "vigilence météo / prévision dans l'heure" pour suspendre la tonte lors de période pluie. (voir également plus bas le détail sur cette fonction)
 * Si la fonction "Planification par zones" est utilisée, cocher la case "Gestion de 2 zones", et définissez en utilisant le sélecteur de commandes, les 2 commandes jeedom pour activer chaque zone.
 Définissez ensuite le pourcentage de cycle de tonte à réaliser dans la zone 1, le pourcentage de la zone 2 sera bien sur le complément à 100%. (ces ratios sont à priori en rapport avec la surface relative de chaque zone)
-
+* Si l'**option météo** est utilisée, il aut alors renseigner les commandes dans la section "Utilisation de la météo". 
+Pour cela, il faut avoir au préalable installé le plugin "Vigilence météo/Pluie à 1h".
+En utilisant le sélecteur de commande, indiquer les 2 liens "Pluie prévue dans l'heure" et "Prévision à 0-5 mn".
+* Renseigner ensuite la section "Calendrier de fonctionnement".
+Il est possible de définir 2 plages horaires par jour, pour chaque jour de la semaine.
+(La zone "Initialisation plage horaire 1 ou 2" permet de remplir plus rapidement les informations hebdomadaires en recopiant une même défition sur chaque jour de la semaine).
+Pour chaque plage horaire, on peux associer une zone de tonte, avec un chiffre entre 1 et 3:
+  * 1: Zone de tonte 1, associée à la commande d'activation zone 1
+  * 2: Zone de tonte 2, associée à la commande d'activation zone 2
+  * 3: Alternance des zones 1 et 2, selon le pourcentage défini précédemment.
+  
 <p align="left">
   <img src="../master/doc/images/installation_2.png" width="600" title="Configuration Planification">
 </p>
