@@ -100,7 +100,7 @@ class husqvarna extends eqLogic {
                       "planning_nbcy_z1"   => array('Nombre de cycles zone1', 'p', 'info',  'numeric',  "", 0, "GENERIC_INFO",   'core::line', 'core::line', ''),
                       "meteo_en"           => array('Météo cmd',              'p', 'action','other',    "", 0, "GENERIC_ACTION", 'custom::IconActionNt', 'custom::IconActionNt',      ''),
                       "meteo_activ"        => array('Météo',                  'p', 'info',  'binary',   "", 0, "GENERIC_INFO",   'core::alert', 'core::alert', ''),
-                      "lastLocations"      => array('Position GPS',           'h', 'info',  'string',   "", 0, "GENERIC_INFO",   'customtemp::maps_husqvarna', 'customtemp::maps_husqvarna', '')
+                      "lastLocations"      => array('Position GPS',           'h', 'info',  'string',   "", 0, "GENERIC_INFO",   'husqvarna::maps_husqvarna', 'husqvarna::maps_husqvarna', '')
         );
     }
 
@@ -127,6 +127,12 @@ class husqvarna extends eqLogic {
                 $cmd->setDisplay('generic_type', $generic_type);
                 $cmd->setTemplate('dashboard', $template_dashboard);
                 $cmd->setTemplate('mobile', $template_mobile);
+                if ((strpos($id, '_nbcy')!== false) or (strpos($id, '_activ')!== false)) {
+                  $cmd->setIsVisible(0);
+                }
+                if (strpos($id, '_en')!== false) {
+                  $cmd->setDisplay('parameters', array("type"=>"mode","largeurDesktop"=>"60","largeurMobile"=>"30"));
+                }
                 $cmd->save();
             }
             else
@@ -136,10 +142,6 @@ class husqvarna extends eqLogic {
                 $cmd->setUnite($unit);
                 $cmd->setDisplay('invertBinary',$invertBinary);
                 $cmd->setDisplay('generic_type', $generic_type);
-/*          
-                $cmd->setTemplate('dashboard', $template_dashboard);
-                $cmd->setTemplate('mobile', $template_mobile);
-*/
                 if ( $listValue != "" )
                 {
                     $cmd->setConfiguration('listValue', $listValue);
