@@ -1,6 +1,6 @@
 # plugin-husqvarna
 
-**Fonctions**
+## Fonctions
 
 Ce plugin est basé sur la version de référence disponible sur le market Jeedom, et ajoute des fonctions complémentaires.
 Il reste globalement compatible de cette version de référence, car les Infos et Commandes existantes ont été conservées.
@@ -17,14 +17,14 @@ Les fonctions ajoutées au plugin actuel sont:
   <img src="../master/doc/images/widget.png" width="300" title="Widget dashboard">
 </p>
 
-**Installation**
+## Installation
 * Télécharger le plugin depuis Github. Je vous suggère de télécharger les versions avec tags ("husq_vx.y")
 * Si vous avez déjà le plugin husqvarna installé sur votre jeedom, vous pouvez supprimer l'équipement jeedom correspondant, et faire une  sauvegarde par précaution du dossier correspondant dans le répertoire plugin de jeedom.
 * Dézipper la nouvelle version du plugin dans le dossier plugin de jeedom (le même nom husqvarna est utilisé)
 * Aller dans le menu "plugins/objets connectés/Husqvarna" de jeedom pour installer le nouveau plugin.
 Sur la page configuration du plugin, vérifier vos identifiants de login sur les serveurs Husqvarna, et cochez la case :"Afficher le panneau desktop". Cela donne accès à la page du "panel" de l'équipement.
 
-**Configuration**
+## Configuration
 Une fois l'installation effectuée, lancer la détection de votre robot, ce qui crée l'équipement correspondant.
 * Sur l'onglet "**Equipement**", choisissez l'objet parent
 * Sur l'onglet "**Config.Carte**", vous pouvez définir l'image qui sera utilisée par le plugin pour l'utilisation de la position GPS de votre robot.
@@ -55,4 +55,46 @@ Pour chaque plage horaire, on peux associer une zone de tonte, avec un chiffre e
   
 <p align="left">
   <img src="../master/doc/images/installation_2.png" width="600" title="Configuration Planification">
+</p>
+
+**Détails sur la planification: gestion de 2 zones de fonctionnement**
+Les 2 zones de fonctionnement sont un artifice d'installation du robot husqvarna pour améliorer ses possibilités, qui consiste à passer 2 jeux de câbles (câbles périphérique et câble guide) et de commuter par relai ces 2 jeux de câbles entre 2 départ du robot depuis sa base.
+En pratique, cela permet de gérer l'équivalent de 2 câbles guides pour un modèle de robot qui n'en a qu'un seul.<br>
+Voir des explications plus détaillées sur le forum "automower-fans":<br>
+http://automower-fans.les-forums.com/topic/5750/tutoriel-installation-2-zones-alternees/
+
+Les commandes jeedom à définir sur la page de configuration permettent de sélectionner le relai sur une zone ou sur l'autre, en activant le relai On ou Off.
+La zone 1 est considérée par le plugin comme la zone ou le relai est Off, car elle est activée lorsque le robot est à sa base. (cela économise un peu de courant)
+
+**Détails sur la planification: option météo**
+Le couplage de la planification avec le plugin vigilance météo permet de suspendre le fonctionnement du robot si de la pluie est prévue dans l'heure qui suit, selon les 2 principes suivants:<br>
+Pour rappel, le plugin météo / prévision dans l'heure fourni une probabilité de pluie entre 1 et 4 par tranche de 5 mn, dans l'heure qui vient. (1: pas de pluie à 4:pluie forte)
+* Si le robot est à sa base et que la quantité de pluie dans l'heure qui vient est supérieure à 18, le robot suspend le cycle de tonte. (12 correspond à aucune pluie prévue dans l'heure)
+* Si le robot est dans un cycle de tonte et que la quantité de pluie dans les 15 mn qui suivent est supérieure à 6, le robot rentre à sa base. (3 correspond à aucune pluie prévue dans les 15 mn)
+
+(il est possible que ces seuils aient besoin d'être ajustés: je les ajouterai en paramètres dans une prochaine version)
+
+
+## Panel
+Une page de type "panel" est disponible pour le plugin dans le menu Acceuil de jeedom.
+Cette page permet de consulter des informations d'historique d'utilisation du robot.
+(Le plugin maintient un fichier de log dans le dossier data, qui mémorise les positions et mode de fonctionnement du robot)
+
+Il est possible de définir une période soit par 2 dates, soit par des racourcis ('Aujourd'hui', 'hier', 'les 7 derniers jours' ou 'tout'), puis d'afficher l'ensemble des positions du robot mémorisées sur cette période. <br>
+(Il y a une position mémorisée toute les minutes.)
+
+Cet affichage permet de visualiser si le robot couvre uniformément l’espace à tondre.
+Il y a 2 modes d'affichage proposés selon les boutons lignes ou cercles.
+Soit des traits pointillés entre chaque position, soit des cercles partiellement transparents.
+Ce second mode d'affichage permet de mieux voir les zones tondues ou non sur des grandes quantités de points.
+
+<p align="left">
+  <img src="../master/doc/images/pannel_1.png" width="600" title="Configuration Planification">
+</p>
+
+Cette page permet également en sélectionnant le bouton "Config Robot" de lire la configuration courante du robot, et de l'afficher.
+L'affichage est relativement "brut", et uniquement pour information.
+
+<p align="left">
+  <img src="../master/doc/images/pannel_2.png" width="600" title="Configuration Planification">
 </p>
