@@ -17,7 +17,7 @@
  */
 global $mower_dt;
 global $mower_settings;
-const MOWER_LOG_FILE = '/../../data/mower_log.txt';
+define("MOWER_LOG_FILE", "/../../data/mower_log.txt");
 
 // ==========================================================
 // Fonction de recuperation des donnees de log de la tondeuse

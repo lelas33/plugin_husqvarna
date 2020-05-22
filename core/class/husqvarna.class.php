@@ -20,8 +20,8 @@
 require_once dirname(__FILE__) . '/../../../../core/php/core.inc.php';
 require_once dirname(__FILE__) . '/../../3rdparty/husqvarna_api.class.php';
 
-const MOWER_LOG_FILE = '/../../data/mower_log.txt';
-const MOWER_IMG_FILE = '/../../ressources/maison.png';
+define("MOWER_LOG_FILE", "/../../data/mower_log.txt");
+define("MOWER_IMG_FILE", "/../../ressources/maison.png");
 const DAY_NAMES = ["dim","lun","mar","mer","jeu","ven","sam"];
 
 // etats du mode de planification
@@ -100,7 +100,9 @@ class husqvarna extends eqLogic {
                       "planning_nbcy_z1"   => array('Nombre de cycles zone1', 'p', 'info',  'numeric',  "", 0, "GENERIC_INFO",   'core::line', 'core::line', ''),
                       "meteo_en"           => array('Météo cmd',              'p', 'action','other',    "", 0, "GENERIC_ACTION", 'custom::IconActionNt', 'custom::IconActionNt',      ''),
                       "meteo_activ"        => array('Météo',                  'p', 'info',  'binary',   "", 0, "GENERIC_INFO",   'core::alert', 'core::alert', ''),
-                      "lastLocations"      => array('Position GPS',           'h', 'info',  'string',   "", 0, "GENERIC_INFO",   'husqvarna::maps_husqvarna', 'husqvarna::maps_husqvarna', '')
+                      "lastLocations"      => array('Position GPS',           'h', 'info',  'string',   "", 0, "GENERIC_INFO",   'husqvarna::maps_husqvarna', 'husqvarna::maps_husqvarna', ''),
+                      "gps_posx"           => array('GPS position X',         'p', 'info',  'numeric',  "", 0, "GENERIC_INFO",   'core::line', 'core::line', ''),
+                      "gps_posy"           => array('GPS position Y',         'p', 'info',  'numeric',  "", 0, "GENERIC_INFO",   'core::line', 'core::line', '')
         );
     }
 
@@ -127,7 +129,7 @@ class husqvarna extends eqLogic {
                 $cmd->setDisplay('generic_type', $generic_type);
                 $cmd->setTemplate('dashboard', $template_dashboard);
                 $cmd->setTemplate('mobile', $template_mobile);
-                if ((strpos($id, '_nbcy')!== false) or (strpos($id, '_activ')!== false)) {
+                if ((strpos($id, '_nbcy')!== false) or (strpos($id, '_activ')!== false) or (strpos($id, 'gps_pos')!== false)) {
                   $cmd->setIsVisible(0);
                 }
                 if (strpos($id, '_en')!== false) {
@@ -256,14 +258,22 @@ class husqvarna extends eqLogic {
                     for ($i=0; $i<50; $i++) {
                         $gps_lat = floatval($status->{$id}[$i]->{"latitude"});
                         $gps_lon = floatval($status->{$id}[$i]->{"longitude"});
-                        if ($i == 0)
-                          $gps_log_dt = time().",".$state_code.",".$gps_lat.",".$gps_lon."\n";
                         $xpos = round($map_wd * ($gps_lon-$map_l)/$lon_width);
                         $ypos = round($map_he * ($gps_lat-$map_t)/$lat_height);
                         $gps_pos = $gps_pos.$xpos.",".$ypos.'/';
+                        if ($i == 0) {
+                          $gps_log_dt = time().",".$state_code.",".$gps_lat.",".$gps_lon."\n";
+                          $gps_posx = $xpos;
+                          $gps_posy = $ypos;
+                        }
                     }
                     //log::add('husqvarna','debug',"Refresh DBG:Gps_pos=".$gps_pos);
                     $cmd->event($gps_pos);
+                    // Stores mower position on map
+                    $cmd = $this->getCmd(null, "gps_posx");
+                    $cmd->event($gps_posx);
+                    $cmd = $this->getCmd(null, "gps_posy");
+                    $cmd->event($gps_posy);
                     // Log GPS position for statistics (if valid)
                     if ($state_code != STS_UNKNOWN) {
                       //log::add('husqvarna','debug',"Refresh log recording Gps_dt=".$gps_log_dt);
